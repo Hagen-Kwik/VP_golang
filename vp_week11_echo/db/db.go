@@ -12,8 +12,7 @@ var err error
 func Init() {
 	conf := config.GetConfig()
 	conn := conf.DB_USERNAME + ":" + conf.DB_PASSWORD + "@tcp(" + conf.DB_HOST + ":" + conf.DB_PORT + ")/" + conf.DB_NAME
-	print(conn)
-	print(conf.DB_USERNAME)
+	
 	db, err = sql.Open("mysql", conn)
 
 	if err != nil {

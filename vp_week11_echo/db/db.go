@@ -9,22 +9,23 @@ import (
 var db *sql.DB
 var err error
 
-func Init(){
+func Init() {
 	conf := config.GetConfig()
-	conn := conf.DB_USERNAME + ":" + conf.DB_PASSWORD + "@tcp(" +conf.DB_HOST + ":" + conf.DB_PORT + ")/" + conf.DB_NAME
-
+	conn := conf.DB_USERNAME + ":" + conf.DB_PASSWORD + "@tcp(" + conf.DB_HOST + ":" + conf.DB_PORT + ")/" + conf.DB_NAME
+	print(conn)
+	print(conf.DB_USERNAME)
 	db, err = sql.Open("mysql", conn)
 
 	if err != nil {
 		panic("Connection failed/error!")
 	}
 
-	// err = db.Ping()
-	// if err != nil {
-	// 	panic("DSN Invalid")
-	// }
+	err = db.Ping()
+	if err != nil {
+		panic("DSN Invalid")
+	}
 }
 
-func CreateCon() *sql.DB{
+func CreateCon() *sql.DB {
 	return db
 }

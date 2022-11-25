@@ -3,6 +3,7 @@ package db
 import (
 	"database/sql"
 	"vp_week11_echo/config"
+
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -12,7 +13,7 @@ var err error
 func Init() {
 	conf := config.GetConfig()
 	conn := conf.DB_USERNAME + ":" + conf.DB_PASSWORD + "@tcp(" + conf.DB_HOST + ":" + conf.DB_PORT + ")/" + conf.DB_NAME
-	
+
 	db, err = sql.Open("mysql", conn)
 
 	if err != nil {

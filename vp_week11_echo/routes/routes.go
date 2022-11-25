@@ -2,6 +2,7 @@ package routes
 
 import (
 	"net/http"
+	"vp_week11_echo/controllers"
 
 	"github.com/labstack/echo/v4"
 )
@@ -23,6 +24,8 @@ func Init() *echo.Echo {
 	})
 
 	e.GET("user/:name", getUser)
+
+	e.GET("/mahasiswa", controllers.FetchAllMahasiswa)
 
 	return e
 }

@@ -3,6 +3,7 @@ package routes
 import (
 	"net/http"
 	"vp_week11_echo/controllers"
+	"vp_week11_echo/middleware"
 
 	"github.com/labstack/echo/v4"
 )
@@ -25,7 +26,17 @@ func Init() *echo.Echo {
 
 	e.GET("user/:name", getUser)
 
-	e.GET("/mahasiswa", controllers.FetchAllMahasiswa)
+	e.GET("/mahasiswa", controllers.FetchAllMahasiswa, middleware.IsAuthenticated)
+
+	e.POST("/mahasiswa", controllers.StoreMahasiswa)
+
+	e.PATCH("/mahasiswa", controllers.UpdateMahasiswa)
+
+	e.DELETE("/mahasiswa", controllers.DeleteMahasiswa)
+
+	e.GET("generate-hash/:password", controllers.GenerateHashPassword)
+
+	e.POST("/login", controllers.CheckLogin)
 
 	return e
 }
